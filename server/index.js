@@ -11,7 +11,7 @@ const port = process.env.PORT;
 app.use(cors());
 app.use(bodyParser.json({ limit: "50mb" })); // accept data with 50mb limit
 
-app.get("/", (req, res) => res.json({ hello: "World" }));
+app.get("/", (req, res) => res.json({ hello: "The API is  running 200 ok!!" }));
 app.use("/api/auth", routes.auth);
 app.use("/api/internships", routes.internships);
 app.use("/api/admin", routes.admin);
