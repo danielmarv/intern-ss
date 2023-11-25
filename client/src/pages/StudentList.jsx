@@ -145,7 +145,14 @@ class StudentList extends Component {
   renderCardData() {
     return this.state.students.map((students) => {
       const { _id, username, name, currentClass, rollNo, created } = students;
-
+  
+      const fullName = name ? `${name.firstname} ${name.lastname}` : 'N/A';
+  
+      // Check if currentClass is defined before accessing its properties
+      const classInfo = currentClass
+        ? `${currentClass.year} ${currentClass.div}`
+        : 'N/A';
+  
       return (
         <tr key={_id} className="application">
           <td>
@@ -153,13 +160,15 @@ class StudentList extends Component {
           </td>
           <td>{username}</td>
           <td>{rollNo}</td>
-          <td>{name.firstname + " " + name.lastname}</td>
-          <td>{currentClass.year + " " + currentClass.div}</td>
+          <td>{fullName}</td>
+          <td>{classInfo}</td>
           <td>{new Date(created).toDateString()}</td>
         </tr>
       );
     });
   }
+  
+  
 
   filter(e) {
     var filterText, cards, i;
