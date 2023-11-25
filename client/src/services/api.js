@@ -4,6 +4,7 @@ const host = process.env.REACT_APP_API_HOST;
 // This is for development purposes only so do not use it in production 
 // let be commented out when pushing to production unless you want to use it then
 // comment out the one above and uncomment this one
+
 // const host = process.env.REACT_APP_API_HOST_DEV;
 
 export const setToken = (token) => {
