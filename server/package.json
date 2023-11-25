@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start":"node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon index.js"
   },
   "author": "",
   "license": "ISC",
@@ -23,5 +24,8 @@
     "nodemailer": "^6.6.2",
     "nodemailer-smtp-transport": "^2.7.4",
     "uuid": "^8.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
   }
 }
