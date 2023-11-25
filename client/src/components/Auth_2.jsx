@@ -25,29 +25,30 @@ class Auth_2 extends Component {
   }
 
   handleSubmit(e) {
-    var str = this.state.username;
-    var str1 = str.substring(0, 3);
+    const { username, password, emailId } = this.state;
+    const { authType } = this.props;
+  
+    // Regular expression to match the format "21/BCC/BU/R/0019"
+    const registrationIdRegex = /^(?:\d{2}\/[A-Z]+\/[A-Z]+\/[A-Z]\/\d{4})$/;
+  
     if (this.state.password === this.state.confirmpassword) {
-      if (
-        str1 === "C2K" ||
-        str1 === "I2K" ||
-        (str1 === "E2K" && str.length === 16 )
-      ) {
-        const { username, password, emailId } = this.state;
-        const { authType } = this.props;
+      if (registrationIdRegex.test(username)) {
         e.preventDefault();
         this.props.authUser(authType || "login", {
           username,
           password,
           emailId,
         });
+
+        history.push("/login");
       } else {
-        alert("Invalid ID, Please check again ");
+        alert("Invalid Registration ID, Please check again");
       }
     } else {
-      alert("Error! Check form fields again... ");
+      alert("Error! Passwords do not match");
     }
   }
+  
   handleConfirmPassword(e) {
     this.setState({ [e.target.name]: e.target.value });
     if (this.state.password !== e.target.value) {
@@ -79,7 +80,7 @@ class Auth_2 extends Component {
                   type="text"
                   value={username}
                   name="username"
-                  placeholder="Registration ID (eg: C2K...)"
+                  placeholder="Registration ID (eg: 21/BU...)"
                   className="form-control"
                   minLength="16"
                   maxLength="16"

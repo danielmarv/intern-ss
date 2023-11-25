@@ -1,34 +1,34 @@
 const mongoose = require("mongoose");
-const Student = require("./student"); // Make sure to provide the correct path
+const Faculty = require("./faculty"); // Make sure to provide the correct path
 
-// Assuming you have the data in the specified format
-const inputData = {
+// Assuming you have the faculty data in the specified format
+const facultyData = {
   name: {
-    firstname: "Daniel",
-    lastname: "Marvin",
+    firstname: "Admin",
+    lastname: "IMS",
   },
-  rollNo: 123,
   currentClass: {
     year: "2023",
     div: 1,
   },
-  prevSemAttendance: 80,
-  emailId: "danientege785@gmail.com",
-  marksheets: [],
-  username: "joshic",
-  password: "123",
+  emailId: "dntege@bugemauniv.ac.ug",
+  department: "Computer Science",
+  username: "Admin",
+  password: "Admin123",
+  designation: "Admin",
   created: new Date(),
-  internships: [] // Assuming you want to start with an empty array
+  applicationsReceived: [],
+  applicationsApproved: [],
 };
 
-// Create a new instance of the Student model with the provided data
-const newStudent = new Student(inputData);
+// Create a new instance of the Faculty model with the provided data
+const newFaculty = new Faculty(facultyData);
 
-// Save the new student to the database
-newStudent.save()
-  .then(savedStudent => {
-    console.log('Student saved:', savedStudent);
+// Save the new faculty to the database
+newFaculty.save()
+  .then(savedFaculty => {
+    console.log('Faculty saved:', savedFaculty);
   })
   .catch(error => {
-    console.error('Error saving student:', error);
+    console.error('Error saving faculty:', error);
   });
