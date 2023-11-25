@@ -1,4 +1,4 @@
-const db = require("../models");
+const db = require("../models/models");
 
 exports.addNewNotice = async (req, res, next) => {
   const {

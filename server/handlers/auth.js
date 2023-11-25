@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
-const db = require("../models");
+const db = require("../models/models");
 const nodemailer = require("nodemailer");
 const transport = require("nodemailer-smtp-transport");
 require("dotenv").config();

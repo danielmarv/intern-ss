@@ -1,4 +1,4 @@
-const db = require("../models");
+const db = require("../models/models");
 const chain = require("./chain");
 let nodemailer = require("nodemailer");
 let transport = require("nodemailer-smtp-transport");
