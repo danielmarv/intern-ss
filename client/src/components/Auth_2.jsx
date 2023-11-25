@@ -31,7 +31,7 @@ class Auth_2 extends Component {
       if (
         str1 === "C2K" ||
         str1 === "I2K" ||
-        (str1 === "E2K" && str.length === 11)
+        (str1 === "E2K" && str.length === 16 )
       ) {
         const { username, password, emailId } = this.state;
         const { authType } = this.props;
@@ -81,8 +81,8 @@ class Auth_2 extends Component {
                   name="username"
                   placeholder="Registration ID (eg: C2K...)"
                   className="form-control"
-                  minLength="11"
-                  maxLength="11"
+                  minLength="16"
+                  maxLength="16"
                   autoComplete="off"
                   onChange={this.handleChange}
                 />

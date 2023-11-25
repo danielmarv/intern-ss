@@ -13,6 +13,17 @@ mongoose.connect(process.env.MONGO_URI, {
   useFindAndModify: false,
 });
 
+const db = mongoose.connection;
+
+db.on("error", (error) => {
+  console.error("MongoDB connection error:", error);
+});
+
+db.once("open", () => {
+  console.log("Connected to MongoDB!");
+});
+
+
 module.exports.Student = require("./student");
 module.exports.Internship = require("./internship");
 module.exports.Notices = require("./notices");
