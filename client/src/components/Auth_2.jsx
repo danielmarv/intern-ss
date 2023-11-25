@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { authUser, logout } from "../store/actions";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import { MdError } from "react-icons/md";
 import ErrorMessage from "../components/ErrorMessage";
 
@@ -26,7 +26,7 @@ class Auth_2 extends Component {
 
   handleSubmit(e) {
     const { username, password, emailId } = this.state;
-    const { authType } = this.props;
+    const { authType, history } = this.props;
   
     // Regular expression to match the format "21/BCC/BU/R/0019"
     const registrationIdRegex = /^(?:\d{2}\/[A-Z]+\/[A-Z]+\/[A-Z]\/\d{4})$/;
@@ -146,4 +146,4 @@ class Auth_2 extends Component {
   }
 }
 
-export default connect(() => ({}), { authUser, logout })(Auth_2);
+export default withRouter(connect(() => ({}), { authUser, logout })(Auth_2));
