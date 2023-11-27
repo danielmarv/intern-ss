@@ -55,12 +55,22 @@ class MainContent extends Component {
     }
   }
   async componentDidMount() {
-    const { getStudentInternships } = this.props;
-    getStudentInternships().then(this.setState(this.props.internships));
+    try {
+      const internships = await getStudentInternships();
+      console.log('Internships received:', internships);
+      this.loadData(internships);
+    } catch (error) {
+      // Handle errors if any
+      console.error("Error fetching internships:", error);
+    }
   }
+  
   loadData(internships) {
-    if (internships.length > 0) this.setState({ internships: internships });
-  }
+    if (internships && internships.length > 0) {
+      this.setState({ internships });
+    }
+  }  
+ 
   enableListview() {
     var elements = document.getElementsByClassName("card-body");
     for (let i = 0; i < elements.length; i++) {
@@ -75,6 +85,7 @@ class MainContent extends Component {
   }
 
   render() {
+    const { internships } = this.state;
     return (
       <div className="ctb">
         <div className="container-fluid my-1 of">
@@ -145,7 +156,7 @@ class MainContent extends Component {
           </div>
           <hr />
           <div>
-            {this.state.internships[0].holder.designation === null && (
+          {internships.length === 0 && (
               <div className="alert alert-info">
                 <b>
                   <span
@@ -158,8 +169,8 @@ class MainContent extends Component {
                 to fetch internship applications.
               </div>
             )}
-            {this.state.internships[0].holder.designation !== null &&
-              this.state.internships.map((internship) => (
+            {internships.length > 0 &&
+              internships.map((internship) => (
                 <div
                   key={internship._id}
                   className={
@@ -294,10 +305,4 @@ class MainContent extends Component {
   }
 }
 
-export default connect(
-  (store) => ({
-    auth: store.auth,
-    internships: store.internships,
-  }),
-  { getStudentInternships }
-)(MainContent);
+export default MainContent;
